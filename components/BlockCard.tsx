@@ -20,11 +20,11 @@ const BlockCard: React.FC<BlockCardProps> = ({ block, onClick }) => {
   return (
     <div 
       onClick={() => onClick(block)}
-      className="group relative break-inside-avoid mb-6 bg-white border border-gray-200 rounded-lg p-5 hover:border-gray-400 transition-all duration-200 cursor-pointer shadow-sm hover:shadow-md flex flex-col gap-3"
+      className="group relative break-inside-avoid mb-8 bg-neutral-900 border border-neutral-800 p-8 hover:border-neutral-500 transition-all duration-200 cursor-pointer shadow-sm hover:shadow-none flex flex-col gap-4"
     >
       {/* Header / Meta */}
-      <div className="flex justify-between items-start text-xs text-gray-400 font-mono uppercase tracking-wider mb-1">
-        <span className="flex items-center gap-1">
+      <div className="flex justify-between items-start text-[11px] text-neutral-500 font-mono uppercase tracking-wider mb-1">
+        <span className="flex items-center gap-2">
           {isLink && <ExternalLink size={12} />}
           {isText && <TypeIcon size={12} />}
           {isImage && <ImageIcon size={12} />}
@@ -36,17 +36,17 @@ const BlockCard: React.FC<BlockCardProps> = ({ block, onClick }) => {
       {/* Content */}
       <div className="flex-grow">
         {block.title && (
-          <h3 className="font-medium text-gray-900 text-lg leading-tight mb-2">
+          <h3 className="font-bold text-white text-xl leading-tight mb-3 font-mono">
             {block.title}
           </h3>
         )}
 
         {isImage && (
-          <div className="rounded overflow-hidden mb-3 border border-gray-100">
+          <div className="overflow-hidden mb-4 border border-neutral-800 bg-black/50">
             <img 
               src={block.content} 
               alt={block.title || "Stash image"} 
-              className="w-full h-auto object-cover max-h-64"
+              className="w-full h-auto object-contain max-h-[500px]"
               loading="lazy"
             />
           </div>
@@ -57,19 +57,19 @@ const BlockCard: React.FC<BlockCardProps> = ({ block, onClick }) => {
              href={block.content} 
              target="_blank" 
              rel="noreferrer"
-             className="text-sm text-blue-600 hover:underline break-words line-clamp-3 block"
+             className="text-base text-blue-400 hover:text-blue-300 break-words line-clamp-4 block font-mono underline decoration-1 underline-offset-2"
              onClick={(e) => e.stopPropagation()}
            >
              {block.content}
            </a>
         ) : (
-          <p className="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap font-serif line-clamp-6">
+          <p className="text-base text-neutral-300 leading-relaxed whitespace-pre-wrap font-sans line-clamp-[8]">
             {block.content}
           </p>
         )}
         
         {block.description && (
-            <p className="mt-3 text-xs text-gray-500 italic border-l-2 border-gray-200 pl-2">
+            <p className="mt-4 text-sm text-neutral-500 italic border-l-2 border-neutral-700 pl-3 font-serif">
                 {block.description}
             </p>
         )}
@@ -79,8 +79,8 @@ const BlockCard: React.FC<BlockCardProps> = ({ block, onClick }) => {
       {block.tags.length > 0 && (
         <div className="flex flex-wrap gap-2 mt-2">
           {block.tags.map(tag => (
-            <span key={tag} className="text-[10px] px-2 py-0.5 bg-gray-50 text-gray-600 rounded border border-gray-100 font-mono group-hover:bg-gray-100 transition-colors">
-              <Hash size={8} className="inline mr-0.5" />{tag}
+            <span key={tag} className="text-[11px] px-2 py-1 bg-neutral-800 text-neutral-400 border border-neutral-700 font-mono hover:border-neutral-500 hover:text-white transition-colors">
+              {tag}
             </span>
           ))}
         </div>
